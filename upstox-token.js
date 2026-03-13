@@ -1,10 +1,10 @@
-exports.handler = async function(event, context) {
-  if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: "Method Not Allowed" };
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
   }
 
   try {
-    const { code } = JSON.parse(event.body);
+    const { code } = req.body;
 
     const API_KEY    = process.env.UPSTOX_API_KEY;
     const API_SECRET = process.env.UPSTOX_API_SECRET;
@@ -18,7 +18,7 @@ exports.handler = async function(event, context) {
       grant_type:    "authorization_code"
     });
 
-    const resp = await fetch("https://api.upstox.com/v2/login/authorization/token", {
+    const response = await fetch("https://api.upstox.com/v2/login/authorization/token", {
       method:  "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -27,17 +27,12 @@ exports.handler = async function(event, context) {
       body: params.toString()
     });
 
-    const data = await resp.json();
+    const data = await response.json();
 
-    return {
-      statusCode: 200,
-      headers: { "Access-Control-Allow-Origin": "*" },
-      body: JSON.stringify(data)
-    };
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    return res.status(200).json(data);
+
   } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: err.message })
-    };
+    return res.status(500).json({ error: err.message });
   }
-};
+}
