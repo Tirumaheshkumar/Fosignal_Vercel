@@ -1,7 +1,0 @@
-{
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/callback", "dest": "/callback.html" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
-}
