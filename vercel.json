@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/upstox-token.js": {
+    "upstox-token.js": {
       "runtime": "nodejs18.x"
     }
   },
