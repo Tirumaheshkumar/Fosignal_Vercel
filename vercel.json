@@ -1,11 +1,5 @@
 {
-  "functions": {
-    "upstox-token.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "rewrites": [
-    { "source": "/api/upstox-token", "destination": "/upstox-token.js" },
     { "source": "/callback", "destination": "/callback.html" },
     { "source": "/((?!api|callback).*)", "destination": "/index.html" }
   ]
