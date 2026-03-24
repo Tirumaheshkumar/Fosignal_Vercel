@@ -1,4 +1,4 @@
-module.exports = async function handler(req, res) {
+module.exports = async function handler
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Cache-Control', 'no-store, max-age=0');
 
