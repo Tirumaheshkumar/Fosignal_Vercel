@@ -2,7 +2,7 @@
 // Fetches the Upstox instrument list and returns the nearest active
 // contract for each MCX commodity — auto-updates every month automatically.
 
-module.exports = async function handler(req, res) {
+module.module.exports = async function handler
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate'); // Cache 1hr on CDN
 
