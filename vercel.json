@@ -1,0 +1,11 @@
+{
+  "functions": {
+    "api/*.js": {
+      "runtime": "@vercel/node"
+    }
+  },
+  "rewrites": [
+    { "source": "/callback", "destination": "/callback.html" },
+    { "source": "/((?!api|callback).*)", "destination": "/index.html" }
+  ]
+}
