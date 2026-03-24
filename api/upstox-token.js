@@ -1,15 +1,10 @@
 export default async function handler(req, res) {
   try {
-    // Debug logs
-    console.log("ENV CHECK:", {
-      key: process.env.UPSTOX_API_KEY,
-      redirect: process.env.UPSTOX_REDIRECT_URI
-    });
-
-    const { code } = req.query;
+    const url = new URL(req.url, `http://${req.headers.host}`);
+    const code = url.searchParams.get("code");
 
     if (!code) {
-      return res.status(400).json({ error: "No code provided" });
+      return res.status(200).json({ message: "API working, no code yet" });
     }
 
     const response = await fetch("https://api.upstox.com/v2/login/authorization/token", {
@@ -28,12 +23,10 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    console.log("UPSTOX RESPONSE:", data);
-
-    res.status(200).json(data);
+    return res.status(200).json(data);
 
   } catch (error) {
     console.error("ERROR:", error);
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 }
