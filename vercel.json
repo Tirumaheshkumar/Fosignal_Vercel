@@ -1,11 +1,7 @@
 {
   "functions": {
-    "api/*.js": {
+    "api/*.cjs": {
       "runtime": "nodejs18.x"
     }
-  },
-  "rewrites": [
-    { "source": "/callback", "destination": "/callback.html" },
-    { "source": "/((?!api|callback).*)", "destination": "/index.html" }
-  ]
+  }
 }
