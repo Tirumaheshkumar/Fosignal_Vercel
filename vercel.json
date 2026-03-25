@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/callback", "destination": "/callback.html" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
